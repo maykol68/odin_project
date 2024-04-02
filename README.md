@@ -380,3 +380,128 @@ _*A continuación se ofrece un breve vistazo a algunos otros métodos de matriz 
 [1, 2, 3].join          #=> "123"
 [1, 2, 3].join("-")     #=> "1-2-3"
 ```
+
+## Creating hashes
+Let’s dive in and create a hash!
+
+```ruby
+my_hash = {
+  "a random word" => "ahoy",
+  "Dorothy's math test score" => 94,
+  "an array" => [1, 2, 3],
+  "an empty hash within a hash" => {}
+}
+```
+_*Este ejemplo muestra la forma más básica de crear un hash, que consiste en utilizar el literal hash de llaves ({}). 
+El hash anterior tiene cuatro claves que apuntan a cuatro valores diferentes. Por ejemplo, la primera clave, "una palabra aleatoria", apunta al valor "ahoy". 
+Como puedes ver, los valores de un hash pueden ser un número, una cadena, una matriz o incluso otro hash. 
+
+Las claves y los valores están asociados con un operador especial llamado hash rocket: =>. Al igual que con una matriz, también puedes crear un nuevo hash llamando al antiguo método ::new en la clase Hash.*_
+```ruby
+my_hash = Hash.new
+my_hash               #=> {}
+```
+
+_*Por supuesto, los hashes no sólo toman cadenas como claves y valores. Ruby es un lenguaje bastante flexible, por lo que puedes insertar cualquier elemento antiguo y funcionará bien.*_
+
+```ruby
+hash = { 9 => "nine", :six => 6 }
+```
+### Accessing values
+_*Puede acceder a los valores en un hash de la misma manera que accede a los elementos en una matriz. Cuando llamas al valor de un hash por clave, la clave va dentro de un par de corchetes, al igual que cuando llamas a una matriz por índice.*_
+```ruby
+shoes = {
+  "summer" => "sandals",
+  "winter" => "boots"
+}
+
+shoes["summer"]   #=> "sandals"
+```
+
+Si intenta acceder a una clave que no existe en el hash, devolverá cero:
+```ruby
+shoes["hiking"]   #=> nil
+```
+
+A veces, este comportamiento puede resultar problemático si devolver silenciosamente un valor nulo podría causar estragos en su programa. Afortunadamente, los hashes tienen un método de recuperación que generará un error cuando intentes acceder a una clave que no está en tu hash.
+
+```ruby
+shoes.fetch("hiking")   #=> KeyError: key not found: "hiking"
+```
+
+_*Alternativamente, este método puede devolver un valor predeterminado en lugar de generar un error si no se encuentra la clave proporcionada.*_
+
+```ruby
+shoes.fetch("hiking", "hiking boots") #=> "hiking boots"
+```
+
+## Adding and changing data
+_*Puede agregar un par clave-valor a un hash llamando a la clave y estableciendo el valor, tal como lo haría con cualquier otra variable.*_
+
+```ruby
+shoes["fall"] = "sneakers"
+
+shoes     #=> {"summer"=>"sandals", "winter"=>"boots", "fall"=>"sneakers"}
+```
+
+_*También puede utilizar este enfoque para cambiar el valor de una clave existente.*_
+
+```ruby
+shoes["summer"] = "flip-flops"
+shoes     #=> {"summer"=>"flip-flops", "winter"=>"boots", "fall"=>"sneakers"}
+```
+## Removing data
+_*La eliminación de datos de un hash se realiza con el método #delete del hash, que proporciona la interesante funcionalidad de devolver el valor del par clave-valor que se eliminó del hash*_
+```ruby
+shoes.delete("summer")    #=> "flip-flops"
+shoes                     #=> {"winter"=>"boots", "fall"=>"sneakers"}
+```
+
+## Methods
+_*Los hashes responden a muchos de los mismos métodos que las matrices, ya que ambos emplean el módulo Enumerable de Ruby. En la próxima lección, entraremos en muchos más detalles sobre el módulo Enumerable, incluidas las diferencias en cómo se comportan los métodos Enumerable para matrices y hashes.*_
+
+_*Un par de métodos útiles que son específicos de los hashes son los métodos #keys y #values, que, como era de esperar, devuelven las claves y los valores de un hash, respectivamente. Tenga en cuenta que ambos métodos devuelven matrices.*_
+
+```ruby
+books = {
+  "Infinite Jest" => "David Foster Wallace",
+  "Into the Wild" => "Jon Krakauer"
+}
+
+books.keys      #=> ["Infinite Jest", "Into the Wild"]
+books.values    #=> ["David Foster Wallace", "Jon Krakauer"]
+``` 
+## Merging two hashes
+_*De vez en cuando, te encontrarás con una situación en la que dos hashes desean unirse en santa unión. Afortunadamente, existe un método para ello. (¡No se requiere ministro ordenado!)*_
+```ruby
+hash1 = { "a" => 100, "b" => 200 }
+hash2 = { "b" => 254, "c" => 300 }
+hash1.merge(hash2)      #=> { "a" => 100, "b" => 254, "c" => 300 }
+```
+
+_*Observe que los valores del hash que se fusionan (en este caso, los valores en hash2) sobrescriben los valores del hash que se fusionan en (hash1 aquí) cuando los dos hashes tienen una clave que es la misma.*_
+
+## Symbols as hash keys
+_*En esta lección, usamos principalmente cadenas para claves hash, pero en el mundo real, casi siempre verás símbolos (como :this_guy) usados ​​como claves. Esto se debe principalmente a que los símbolos tienen mucho más rendimiento que las cadenas en Ruby, pero también permiten una sintaxis mucho más limpia al definir hashes. He aquí la belleza:*_
+```ruby
+# 'Rocket' syntax
+american_cars = {
+  :chevrolet => "Corvette",
+  :ford => "Mustang",
+  :dodge => "Ram"
+}
+# 'Symbols' syntax
+japanese_cars = {
+  honda: "Accord",
+  toyota: "Corolla",
+  nissan: "Altima"
+}
+```
+_*Ese último ejemplo hace que se te salten las lágrimas, ¿no? Observe que el cohete hash y los dos puntos que representan un símbolo se han combinado. Desafortunadamente, esto solo funciona para símbolos, así que no intentes { 9: "valor" } o obtendrás un error de sintaxis.*_
+
+_*Cuando usas la sintaxis más limpia de "símbolos" para crear un hash, aún necesitarás usar la sintaxis de símbolo estándar cuando intentas acceder a un valor. En otras palabras, independientemente de cuál de las dos opciones de sintaxis anteriores utilice al crear un hash, ambas crean claves de símbolos a las que se accede de la misma manera.*_
+
+```ruby
+american_cars[:ford]    #=> "Mustang"
+japanese_cars[:honda]   #=> "Accord"
+```
