@@ -81,6 +81,12 @@ nil.to_s      #=> ""
 
 :symbol.to_s  #=> "symbol"
 
+## Create a symbol
+
+_*Para crear un símbolo, coloque dos puntos al principio de algún texto:*_
+
+:my_symbol
+
 ## Symbols vs. strings
 
 string" == "string"  #=> true
@@ -89,7 +95,15 @@ string" == "string"  #=> true
 
 :symbol.object_id == :symbol.object_id    #=> true
 
+## Case statements
+_*Las declaraciones de caso son una manera clara de escribir varias expresiones condicionales que normalmente resultarían en una declaración if...elsif desordenada. Incluso puede asignar el valor de retorno de una declaración de caso a una variable para usarlo más adelante. Las declaraciones de caso procesan cada condición por turno y, si la condición devuelve falso, pasará a la siguiente hasta que se encuentre una coincidencia. Se puede proporcionar una cláusula else para que sirva como valor predeterminado si no se encuentra ninguna coincidencia.*_
+ grade = 'F'
 
+did_i_pass = case grade #=> create a variable `did_i_pass` and assign the result of a call to case with the variable grade passed in
+  when 'A' then "Hell yeah!"
+  when 'D' then "Don't tell your mother."
+  else "'YOU SHALL NOT PASS!' -Gandalf"
+end
 
 
 
