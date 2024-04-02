@@ -153,11 +153,11 @@ end
 ## Ternary operator
 
 _*El operador ternario es una declaración if...else de una línea que puede hacer que su código sea mucho más conciso. ¿Su sintaxis es declaración condicional? <ejecutar si es verdadero> : <ejecutar si es falso>. Puede asignar el valor de retorno de la expresión a una variable.*_
-
+```ruby
 age = 19
 response = age < 18 ? "You still have your entire life ahead of you." : "You're all grown up."
 puts response #=> "You're all grown up."
-
+```
 _*Aquí, debido a que la expresión se evaluó como falsa, el código después de : se asignó a la variable respuesta. Escribir esto como una declaración if...else sería mucho más detallado:*_
 
 ## Loop
