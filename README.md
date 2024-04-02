@@ -264,10 +264,10 @@ _*Los métodos Ruby #upto y #downto hacen exactamente lo que uno pensaría que h
 ## Creating arrays
 _*Aquí hay dos matrices básicas:*_
 
-´´´ruby
+```ruby
 num_array = [1, 2, 3, 4, 5]
 str_array = ["This", "is", "a", "small", "array"]
-´´´
+```
 
 _*Ambas matrices tienen cinco elementos separados por comas. La primera matriz contiene números enteros, mientras que la segunda matriz contiene cadenas.*_
 
@@ -277,18 +277,18 @@ _*Las matrices se crean comúnmente con un literal de matriz, que es una sintaxi
 
 _*También se puede crear una matriz llamando al método Array.new. Cuando llamas a este método, también puedes incluir hasta 2 argumentos opcionales (tamaño inicial y valor predeterminado):*_
 
-´´´ruby
+```ruby
 Array.new               #=> []
 Array.new(3)            #=> [nil, nil, nil]
 Array.new(3, 7)         #=> [7, 7, 7]
 Array.new(3, true)      #=> [true, true, true]
-´´´
+```
 
 ## Accessing elements
 
 _*Cada elemento de una matriz tiene un índice, que es una representación numérica de la posición del elemento en la matriz. Como la mayoría de los otros lenguajes de programación, las matrices Ruby utilizan indexación de base cero, lo que significa que el índice del primer elemento es 0, el índice del segundo elemento es 1, y así sucesivamente. El acceso a un elemento específico dentro de una matriz se realiza llamando a my_array[x], donde x es el índice del elemento que desea. Llamar a una posición no válida resultará en cero. Ruby también permite el uso de índices negativos, que devuelven elementos comenzando desde el final de una matriz, comenzando en [-1].*_
 
-´´´ruby
+```ruby
 str_array = ["This", "is", "a", "small", "array"]
 
 str_array[0]            #=> "This"
@@ -296,76 +296,76 @@ str_array[1]            #=> "is"
 str_array[4]            #=> "array"
 str_array[-1]           #=> "array"
 str_array[-2]           #=> "small"
-´´´
+```
 _*Finalmente, Ruby proporciona los métodos de matriz #first y #last, que deberían explicarse por sí solos. Además, estos métodos pueden tomar un argumento entero, por ejemplo, my_array.first(n) o my_array.last(n), que devolverá una nueva matriz que contiene los primeros o últimos n elementos de my_array, respectivamente.*_
 
-´´´ruby
+```ruby
 str_array = ["This", "is", "a", "small", "array"]
 
 str_array.first         #=> "This"
 str_array.first(2)      #=> ["This", "is"]
 str_array.last(2)       #=> ["small", "array"]
-´´´
+```
 ## Adding and removing elements
 _*Agregar un elemento a una matriz existente se realiza utilizando el método #push o el operador pala <<. Ambos métodos agregarán elementos al final de una matriz y devolverán esa matriz con los nuevos elementos. El método #pop eliminará el elemento al final de una matriz y devolverá el elemento que se eliminó.*_
 
-´´´ruby
+```ruby
 num_array = [1, 2]
 
 num_array.push(3, 4)      #=> [1, 2, 3, 4]
 num_array << 5            #=> [1, 2, 3, 4, 5]
 num_array.pop             #=> 5
 num_array                 #=> [1, 2, 3, 4]
-´´´
+```
 
 _*Los métodos #shift y #unshift se utilizan para agregar y eliminar elementos al comienzo de una matriz. El método #unshift agrega elementos al comienzo de una matriz y devuelve esa matriz (muy parecido a #push). El método #shift elimina el primer elemento de una matriz y devuelve ese elemento (muy parecido a #pop).*_
 
-´´´ruby
+```ruby
 num_array = [2, 3, 4]
 
 num_array.unshift(1)      #=> [1, 2, 3, 4]
 num_array.shift           #=> 1
 num_array                 #=> [2, 3, 4]
-´´´
+```
 
 _*También es útil saber que tanto #pop como #shift pueden tomar argumentos enteros:*_
-´´´ruby
+```ruby
 num_array = [1, 2, 3, 4, 5, 6]
 
 num_array.pop(3)          #=> [4, 5, 6]
 num_array.shift(2)        #=> [1, 2]
 num_array                 #=> [3]
-´´´
+```
 
 ## Adding and subtracting arrays
 _*¿Cuál crees que será el resultado de [1, 2, 3] + [3, 4, 5]?*_
 
 _*Si adivinaste [1, 2, 3, 3, 4, 5], ¡felicidades! Agregar dos matrices devolverá una nueva matriz creada al concatenarlas, similar a la concatenación de cadenas. El método concat funciona de la misma manera.*_
 
-´´´ruby
+```ruby
 a = [1, 2, 3]
 b = [3, 4, 5]
 
 a + b         #=> [1, 2, 3, 3, 4, 5]
 a.concat(b)   #=> [1, 2, 3, 3, 4, 5]
-´´´
+```
 _*Para encontrar la diferencia entre dos matrices, puedes restarlas usando -. Este método devuelve una copia de la primera matriz, eliminando cualquier elemento que aparezca en la segunda matriz.*_
-´´´ruby
+```ruby
 [1, 1, 1, 2, 2, 3, 4] - [1, 4]  #=> [2, 2, 3]
-´´´
+```
 
 ## Basic methods
 _*Ruby le brinda muchos métodos para manipular matrices y su contenido (¡más de 150!), muchos de los cuales están fuera del alcance de esta lección. Para conocer otros métodos, vaya a la documentación oficial (docs.ruby-lang.org) y explore la página Array, donde puede encontrar métodos enumerados alfabéticamente (desplazándose por la barra lateral izquierda) o resumidos y agrupados por propósito (leyendo en "Que hay aquí").*_
 
 _*Llamar al método #methods en una matriz también generará una larga lista de métodos disponibles.*_
 
-´´´ruby
+```ruby
 num_array.methods       #=> A very long list of methods
-´´´
+```
 
 _*A continuación se ofrece un breve vistazo a algunos otros métodos de matriz comunes con los que podría encontrarse:*_
-´´´ruby
 
+```ruby
 [].empty?               #=> true
 [[]].empty?             #=> false
 [1, 2].empty?           #=> false
@@ -379,4 +379,4 @@ _*A continuación se ofrece un breve vistazo a algunos otros métodos de matriz 
 
 [1, 2, 3].join          #=> "123"
 [1, 2, 3].join("-")     #=> "1-2-3"
-´´´
+```
